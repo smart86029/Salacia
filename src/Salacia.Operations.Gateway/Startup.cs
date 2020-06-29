@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -26,6 +27,18 @@ namespace Salacia.Operations.Gateway
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+
+            services
+                .AddGrpcClient<Greeter.GreeterClient>(x =>
+                {
+                    x.Address = new Uri("https://192.168.99.100:1000");
+                })
+                .ConfigurePrimaryHttpMessageHandler(() =>
+                {
+                    var handler = new HttpClientHandler();
+                    handler.ServerCertificateCustomValidationCallback = HttpClientHandler.DangerousAcceptAnyServerCertificateValidator;
+                    return handler;
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
