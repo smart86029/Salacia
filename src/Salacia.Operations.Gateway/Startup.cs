@@ -31,7 +31,7 @@ namespace Salacia.Operations.Gateway
             services
                 .AddGrpcClient<Greeter.GreeterClient>(x =>
                 {
-                    x.Address = new Uri("https://192.168.99.100:1000");
+                    x.Address = new Uri(Configuration["ReleaseApi"]);
                 })
                 .ConfigurePrimaryHttpMessageHandler(() =>
                 {
