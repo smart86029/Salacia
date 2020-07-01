@@ -1,0 +1,28 @@
+version: '3.4'
+
+services:
+  salacia.humanresources.api:
+    image: ${DOCKER_REGISTRY-}salaciahumanresourcesapi
+    build:
+      context: .
+      dockerfile: src/Salacia.HumanResources.Api/Dockerfile
+
+  salacia.identity.api:
+    image: ${DOCKER_REGISTRY-}salaciaidentityapi
+    build:
+      context: .
+      dockerfile: src/Salacia.Identity.Api/Dockerfile
+
+  salacia.release.api:
+    image: ${DOCKER_REGISTRY-}salaciareleaseapi
+    build:
+      context: .
+      dockerfile: src/Salacia.Release.Api/Dockerfile
+
+  salacia.operations.gateway:
+    image: ${DOCKER_REGISTRY-}salaciaoperationsgateway
+    build:
+      context: .
+      dockerfile: src/Salacia.Operations.Gateway/Dockerfile
+    depends_on:
+      - salacia.release.api
