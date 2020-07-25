@@ -4,4 +4,8 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Salacia.HumanResources.Domain\Salacia.HumanResources.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

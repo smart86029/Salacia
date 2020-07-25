@@ -31,7 +31,7 @@ namespace Salacia.HumanResources.Api
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapGrpcService<GreeterService>();
+                endpoints.MapGrpcService<OrganizationGrpc.OrganizationGrpcBase>();
 
                 endpoints.MapGet("/", async context =>
                 {

@@ -1,0 +1,49 @@
+syntax = "proto3";
+
+package salacia.human_resources;
+
+import "google/protobuf/empty.proto";
+import "google/protobuf/timestamp.proto";
+
+service OrganizationGrpc {
+  rpc ListEmployees (ListEmployeesRequest) returns (ListEmployeesResponse);
+  rpc GetEmployee (GetEmployeeRequest) returns (Employee);
+  rpc CreateEmployee (CreateEmployeeRequest) returns (google.protobuf.Empty);
+  rpc UpdateEmployee (UpdateEmployeeRequest) returns (google.protobuf.Empty);
+}
+
+message ListEmployeesRequest {
+  int32 index = 1;
+  int32 size = 2;
+}
+
+message ListEmployeesResponse {
+  string id = 1;
+  string name = 2;
+  string display_name = 3;
+  string department_id = 4;
+  string job_title_id = 5;
+}
+
+message GetEmployeeRequest {
+  string id = 1;
+}
+
+message Employee {
+  
+}
+
+message CreateEmployeeRequest {
+  string name = 1;
+  string display_name = 2;
+  google.protobuf.Timestamp birth_date = 3;
+  int32 gender = 4;
+  int32 marital_status = 5;
+  string department_id = 6;
+  string job_title_id = 7;
+  google.protobuf.Timestamp start_on = 8;
+}
+
+message UpdateEmployeeRequest {
+  
+}
